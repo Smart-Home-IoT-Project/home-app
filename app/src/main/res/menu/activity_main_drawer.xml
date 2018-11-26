@@ -16,6 +16,9 @@
             android:id="@+id/nav_sensors"
             android:icon="@drawable/ic_menu_sensors"
             android:title="Sensores" />
+        <item
+            android:id="@+id/nav_medicines"
+            android:title="Medicamentos" />
     </group>
 
     <item android:title="Otros">

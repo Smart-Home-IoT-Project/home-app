@@ -3,11 +3,11 @@
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorPrimaryBackground">#fceecd</color>
-    <color name="colorPrimaryLight">#607D8B</color>
+    <color name="colorPrimaryLight">#607d8b</color>
     <color name="colorAccent">#ff5252</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
-    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorIcons">#ffffff</color>
     <color name="initialSetupColor">#ededed</color>
     <color name="light_black">#504f4f</color>
     <color name="black">#000000</color>

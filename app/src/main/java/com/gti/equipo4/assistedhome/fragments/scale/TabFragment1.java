@@ -34,14 +34,14 @@ public class TabFragment1 extends Fragment {
         layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
-
+/*
                 Query query = FirebaseFirestore.getInstance()
                         .collection("Bascula")
                         .limit(50);
                 FirestoreRecyclerOptions<Weight> opciones = new FirestoreRecyclerOptions
                         .Builder<Weight>().setQuery(query, Weight.class).build();
                 adaptador2 = new WeigthsFirestoreUI(opciones);
-
+*/
                         recyclerView.setAdapter(adaptador2);
                         adaptador2.startListening();
 
