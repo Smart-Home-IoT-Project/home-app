@@ -118,8 +118,8 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
 
     public void borrarLugar(final int id) {
         new AlertDialog.Builder(this)
-                .setTitle("Borrado de lugar")
-                .setMessage("¿Esta seguro de que quieres eliminar este lugar?")
+                .setTitle("Borrado de medicamento")
+                .setMessage("¿Esta seguro de que quieres eliminar este medicamento?")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         MedicinesTabFragment1.medicinas.borrar(_id);
