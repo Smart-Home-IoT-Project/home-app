@@ -63,7 +63,7 @@ public class MedicinesAdapter extends
     public static void personalizaVista(ViewHolder holder, Medicine medicina) {
         String stringNombre = ""+medicina.getNombre();
         String stringDias = ""+medicina.getDias();
-        String stringCantidad = ""+medicina.getCantidad();
+        String stringCantidad = ""+medicina.getCantidad()+" veces al día";
         String stringFoto = ""+medicina.getFoto();
 
         holder.nombre.setText(stringNombre);

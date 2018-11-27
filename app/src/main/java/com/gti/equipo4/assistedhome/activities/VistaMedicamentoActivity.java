@@ -133,13 +133,6 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void actualizarVistas() {
         if (medicina.getNombre() == null) {
-            findViewById(R.id.nombre).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.nombre).setVisibility(View.VISIBLE);
-            TextView nombre = findViewById(R.id.nombre);
-            nombre.setText(medicina.getNombre());
-        }
-        if (medicina.getNombre() == null) {
             findViewById(R.id.nombreMedicamento).setVisibility(View.GONE);
         } else {
             findViewById(R.id.nombreMedicamento).setVisibility(View.VISIBLE);
