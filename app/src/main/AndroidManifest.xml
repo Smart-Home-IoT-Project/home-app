@@ -33,6 +33,7 @@
         <activity android:name="com.gti.equipo4.assistedhome.activities.PreferenciasActivity" />
 
         <activity android:name="com.gti.equipo4.assistedhome.activities.VistaMedicamentoActivity" />
+        <activity android:name="com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="fileProvider"

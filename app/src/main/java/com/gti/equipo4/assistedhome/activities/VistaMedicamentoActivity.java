@@ -96,7 +96,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULTADO_EDITAR) {
             actualizarVistas();
-            findViewById(R.id.scrollView1).invalidate();
+            findViewById(R.id.vistaMedicamento).invalidate();
         } else if (requestCode == RESULTADO_GALERIA) {
             if (resultCode == Activity.RESULT_OK) {
                 medicina.setFoto(data.getDataString());
@@ -122,7 +122,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
                 .setMessage("¿Esta seguro de que quieres eliminar este lugar?")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        MedicinesTabFragment1.medicinas.borrar((_id));
+                        MedicinesTabFragment1.medicinas.borrar(_id);
                         finish();
                     }
                 })
@@ -130,6 +130,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
                 .show();
     }
 
+    @SuppressLint("SetTextI18n")
     public void actualizarVistas() {
         if (medicina.getNombre() == null) {
             findViewById(R.id.nombre).setVisibility(View.GONE);
@@ -162,7 +163,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
             findViewById(R.id.imageViewDias).setVisibility(View.GONE);
         } else {
             findViewById(R.id.dias).setVisibility(View.VISIBLE);
-            TextView dias = findViewById(R.id.cantidad);
+            TextView dias = findViewById(R.id.dias);
             dias.setText(medicina.getDias());
         }
 
