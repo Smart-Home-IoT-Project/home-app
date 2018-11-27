@@ -27,7 +27,6 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     private EditText dias;
     private EditText cantidad;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +64,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
             case R.id.accion_guardar:
                 medicina.setNombre(nombre.getText().toString());
                 medicina.setCantidad(Integer.parseInt(cantidad.getText().toString()));
+                medicina.setDias(dias.getText().toString());
                 if (id!=-1) { MedicinesTabFragment1.medicinas.actualiza(_id, medicina); }
                 finish();
                 return true;

@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -14,10 +16,17 @@ import androidx.annotation.NonNull;
 
 public class MedicineAsinc implements MedicinesAsync {
     private CollectionReference medicinas;
+    FirebaseUser usuario;
+    String uidUsuario;
+
 
     public MedicineAsinc() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        medicinas = db.collection("Medicamentos");
+        usuario = FirebaseAuth.getInstance().getCurrentUser();
+        uidUsuario = usuario.getUid();
+        medicinas = db.collection("Casa_1213") // TODO: Coger id de la casa dinamicamente
+                .document("medicamentos")
+                .collection(uidUsuario); // Documento del usuario
     }
 
     public void elemento(String id, final EscuchadorElemento escuchador) {

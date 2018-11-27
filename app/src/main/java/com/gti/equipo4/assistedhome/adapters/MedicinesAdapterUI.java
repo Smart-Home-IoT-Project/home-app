@@ -6,20 +6,13 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.model.Medicine;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 
 public class MedicinesAdapterUI extends
-        FirestoreRecyclerAdapter<Medicine, MedicinesAdapter.ViewHolder>{
+        FirestoreRecyclerAdapter<Medicine, MedicinesAdapter.ViewHolder> {
     protected View.OnClickListener onClickListener;
     public MedicinesAdapterUI(
             @NonNull FirestoreRecyclerOptions<Medicine> options) {

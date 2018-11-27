@@ -196,7 +196,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
         }
     }
 
-    protected void ponerFoto(ImageView imageView, String uri) {
+    public void ponerFoto(ImageView imageView, String uri) {
         if (uri != null && !uri.isEmpty() && !uri.equals("null")) {
             imageView.setImageBitmap(reduceBitmap(this, uri, 1024, 1024));
         } else {

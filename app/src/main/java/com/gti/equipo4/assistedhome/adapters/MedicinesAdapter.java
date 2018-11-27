@@ -1,12 +1,15 @@
 package com.gti.equipo4.assistedhome.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gti.equipo4.assistedhome.R;
+import com.gti.equipo4.assistedhome.activities.VistaMedicamentoActivity;
 import com.gti.equipo4.assistedhome.model.Medicine;
 
 import androidx.annotation.NonNull;
@@ -31,6 +34,7 @@ public class MedicinesAdapter extends
         public TextView nombre;
         public TextView dias;
         public TextView cantidad;
+        public ImageView foto;
 
 
         public ViewHolder(View itemView) {
@@ -38,6 +42,7 @@ public class MedicinesAdapter extends
             nombre = itemView.findViewById(R.id.nombreMedicine);
             dias = itemView.findViewById(R.id.diasMedicine);
             cantidad = itemView.findViewById(R.id.cantidadMedicamento);
+            foto =  itemView.findViewById(R.id.imageViewMedicine);
         }
     }
     // Creamos el ViewHolder con la vista de un elemento sin personalizar
@@ -59,9 +64,11 @@ public class MedicinesAdapter extends
         String stringNombre = ""+medicina.getNombre();
         String stringDias = ""+medicina.getDias();
         String stringCantidad = ""+medicina.getCantidad();
+
         holder.nombre.setText(stringNombre);
         holder.dias.setText(stringDias);
         holder.cantidad.setText(stringCantidad);
+        holder.foto.setImageURI(Uri.parse( medicina.getFoto() ) );
     }
     // Indicamos el número de elementos de la lista
     @Override public int getItemCount() {
