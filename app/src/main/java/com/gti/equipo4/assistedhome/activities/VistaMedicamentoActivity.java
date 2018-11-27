@@ -168,6 +168,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
         }
 
         ponerFoto(imageView, medicina.getFoto());
+
     }
 
     public void galeria(View view) {

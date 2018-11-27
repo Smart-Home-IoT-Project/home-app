@@ -64,11 +64,12 @@ public class MedicinesAdapter extends
         String stringNombre = ""+medicina.getNombre();
         String stringDias = ""+medicina.getDias();
         String stringCantidad = ""+medicina.getCantidad();
+        String stringFoto = ""+medicina.getFoto();
 
         holder.nombre.setText(stringNombre);
         holder.dias.setText(stringDias);
         holder.cantidad.setText(stringCantidad);
-        holder.foto.setImageURI(Uri.parse( medicina.getFoto() ) );
+        holder.foto.setImageURI(Uri.parse(stringFoto) );
     }
     // Indicamos el número de elementos de la lista
     @Override public int getItemCount() {
