@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:title="Cocina"
-        app:icon="@drawable/ic_calendar"
+        app:icon="@drawable/ic_kitchen"
         app:inner_view="@layout/room"
         app:expandOnClick="true"
         app:animationDuration="300"
