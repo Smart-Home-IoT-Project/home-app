@@ -12,6 +12,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:id="@+id/container_fotos"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/foto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="fotografía"
+                android:padding="1dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:id="@+id/camara"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo cámara"
+                    android:onClick="tomarFoto"
+                    android:src="@android:drawable/ic_menu_camera" />
+
+                <ImageView
+                    android:id="@+id/galeria"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo galería"
+                    android:onClick="galeria"
+                    android:src="@android:drawable/ic_menu_gallery" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="Eliminar foto"
+                    android:onClick="eliminarFoto"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
+            </LinearLayout>
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/container_nom_cant"
             android:layout_width="match_parent"
@@ -31,8 +75,7 @@
                     android:layout_width="40dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="8dp"
-                    android:src="@drawable/ic_medic" />
-
+                    android:src="@drawable/ic_medic"/>
                 <TextView
                     android:id="@+id/nombreMedicamento"
                     android:layout_width="match_parent"
@@ -102,49 +145,6 @@
                 android:text="Lunes, Martes...."
                 android:textSize="18sp" />
         </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/container_fotos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/foto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="fotografía" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right">
-
-                <ImageView
-                    android:id="@+id/camara"
-                    android:layout_width="40dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="logo cámara"
-                    android:onClick="tomarFoto"
-                    android:src="@android:drawable/ic_menu_camera" />
-
-                <ImageView
-                    android:id="@+id/galeria"
-                    android:layout_width="40dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="logo galería"
-                    android:onClick="galeria"
-                    android:src="@android:drawable/ic_menu_gallery" />
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="Eliminar foto"
-                    android:onClick="eliminarFoto"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
-            </LinearLayout>
-        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/container_calendar"

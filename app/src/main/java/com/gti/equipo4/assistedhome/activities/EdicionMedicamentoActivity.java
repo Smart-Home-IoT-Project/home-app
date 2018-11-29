@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.fragments.medicines.MedicinesTabFragment1;
 import com.gti.equipo4.assistedhome.fragments.menu.sensors;
@@ -51,12 +53,12 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edicion_medicines);
-        Bundle extras = getIntent().getExtras();
+        Bundle extras = getIntent().getExtras();/*
         new AlertDialog.Builder(this)
                 .setTitle("¿Quieres coger los datos por NFC?").setMessage("Esto es una aplicación IoT dedicada a hacerte la vida mas facil")
                 .setPositiveButton( "SI" , null)
                 .setNegativeButton("No", null)
-                .show();
+                .show();*/
         id = extras.getLong("id", -1);
         if (id == -1) {
             medicina = new Medicine();
@@ -121,18 +123,11 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        /**
-         * It's important, that the activity is in the foreground (resumed). Otherwise
-         * an IllegalStateException is thrown.
-         */
         setupForegroundDispatch(this, mNfcAdapter);
     }
 
     @Override
     protected void onPause() {
-        /**
-         * Call this before onPause, otherwise an IllegalArgumentException is thrown as well.
-         */
         stopForegroundDispatch(this, mNfcAdapter);
 
         super.onPause();
@@ -140,13 +135,6 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        /**
-         * This method gets called, when a new Intent gets associated with the current activity instance.
-         * Instead of creating a new activity, onNewIntent will be called. For more information have a look
-         * at the documentation.
-         *
-         * In our case this method gets called, when the user attaches a Tag to the device.
-         */
         handleIntent(intent);
     }
 
@@ -234,35 +222,27 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
         }
 
         private String readText(NdefRecord record) throws UnsupportedEncodingException {
-            /*
-             * See NFC forum specification for "Text Record Type Definition" at 3.2.1
-             *
-             * http://www.nfc-forum.org/specs/
-             *
-             * bit_7 defines encoding
-             * bit_6 reserved for future use, must be 0
-             * bit_5..0 length of IANA language code
-             */
 
             byte[] payload = record.getPayload();
 
-            // Get the Text Encoding
             String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16";
 
-            // Get the Language Code
             int languageCodeLength = payload[0] & 0063;
 
-            // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-            // e.g. "en"
-
-            // Get the Text
             return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
         }
 
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-                nombre.setText("Read content: " + result);
+                // modelo de como deberia de estar escrito el tag
+                //s = "{\"nombre\":\"fluimocil\",\"cantidad\":5\"dias\"Luner,Martes...}";
+                JsonParser jsonParser = new JsonParser();
+                JsonObject data = (JsonObject) jsonParser.parse(result).getAsJsonObject();
+                nombre.setText(""+ data.getAsJsonObject().get("nombre").getAsString());
+                cantidad.setText(""+ data.getAsJsonObject().get("cantidad").getAsString());
+                dias.setText(""+ data.getAsJsonObject().get("dias").getAsString());
+
             }
         }
     }
