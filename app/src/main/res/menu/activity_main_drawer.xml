@@ -9,15 +9,12 @@
             android:icon="@drawable/ic_menu_home"
             android:title="Inicio" />
         <item
-            android:id="@+id/nav_scale"
-            android:icon="@drawable/ic_scale"
-            android:title="Báscula" />
-        <item
             android:id="@+id/nav_sensors"
             android:icon="@drawable/ic_menu_sensors"
             android:title="Sensores" />
         <item
             android:id="@+id/nav_medicines"
+            android:icon="@drawable/ic_medic"
             android:title="Medicamentos" />
     </group>
 

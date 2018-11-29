@@ -7,8 +7,6 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
 import com.gti.equipo4.assistedhome.R;
-import com.gti.equipo4.assistedhome.fragments.scale.TabFragment1;
-import com.gti.equipo4.assistedhome.fragments.scale.TabFragment2;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

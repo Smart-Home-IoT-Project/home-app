@@ -1,6 +1,5 @@
 package com.gti.equipo4.assistedhome.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -15,25 +14,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.fragments.medicines.MedicinesTabFragment1;
-import com.gti.equipo4.assistedhome.fragments.menu.sensors;
-import com.gti.equipo4.assistedhome.interfaces.Medicines;
 import com.gti.equipo4.assistedhome.model.Medicine;
-import com.gti.equipo4.assistedhome.adapters.*;
-import com.gti.equipo4.assistedhome.model.Weight;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EdicionMedicamentoActivity extends AppCompatActivity {

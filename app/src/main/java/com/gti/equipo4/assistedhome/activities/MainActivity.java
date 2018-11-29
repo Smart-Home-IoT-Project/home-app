@@ -35,13 +35,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.gti.equipo4.assistedhome.R;
-import com.gti.equipo4.assistedhome.adapters.Weights;
-import com.gti.equipo4.assistedhome.adapters.WeigthsFirestoreUI;
 import com.gti.equipo4.assistedhome.fragments.menu.medicines;
-import com.gti.equipo4.assistedhome.fragments.menu.scale;
 import com.gti.equipo4.assistedhome.fragments.menu.home;
 import com.gti.equipo4.assistedhome.fragments.menu.sensors;
 
@@ -193,8 +189,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fragment = new home();
-        } else if (id == R.id.nav_scale) {
-            fragment = new scale();
         } else if (id == R.id.nav_sensors) {
             fragment = new sensors();
         } else if (id == R.id.nav_medicines) {
