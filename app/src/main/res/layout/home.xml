@@ -9,19 +9,15 @@
     app:barrierAllowsGoneWidgets="true">
 
 
-    <TextView
-        android:id="@+id/textView13"
+    <com.alespero.expandablecardview.ExpandableCardView
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Home"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:title="Cocina"
+        app:icon="@drawable/ic_calendar"
+        app:inner_view="@layout/room"
+        app:expandOnClick="true"
+        app:animationDuration="300"
+        app:startExpanded="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
