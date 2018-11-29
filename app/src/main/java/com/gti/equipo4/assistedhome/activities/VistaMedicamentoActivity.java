@@ -18,15 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gti.equipo4.assistedhome.R;
-import com.gti.equipo4.assistedhome.adapters.MedicinesAdapter;
-import com.gti.equipo4.assistedhome.adapters.MedicinesAdapterUI;
 import com.gti.equipo4.assistedhome.fragments.medicines.MedicinesTabFragment1;
-import com.gti.equipo4.assistedhome.interfaces.Medicines;
 import com.gti.equipo4.assistedhome.model.Medicine;
 
 import java.io.File;
@@ -34,8 +30,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.DateFormat;
-import java.util.Date;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -132,13 +126,6 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void actualizarVistas() {
-        if (medicina.getNombre() == null) {
-            findViewById(R.id.nombre).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.nombre).setVisibility(View.VISIBLE);
-            TextView nombre = findViewById(R.id.nombre);
-            nombre.setText(medicina.getNombre());
-        }
         if (medicina.getNombre() == null) {
             findViewById(R.id.nombreMedicamento).setVisibility(View.GONE);
         } else {

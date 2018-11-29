@@ -34,7 +34,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         id = extras.getLong("id", -1);
-        if (_id != null) {
+        if (id == -1) {
             medicina = new Medicine();
             _id = null;
         } else {
@@ -66,6 +66,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
                 medicina.setCantidad(Integer.parseInt(cantidad.getText().toString()));
                 medicina.setDias(dias.getText().toString());
                 if (id!=-1) { MedicinesTabFragment1.medicinas.actualiza(_id, medicina); }
+                if (id == -1) { MedicinesTabFragment1.medicinas.anyade( medicina );}
                 finish();
                 return true;
             case R.id.accion_cancelar:

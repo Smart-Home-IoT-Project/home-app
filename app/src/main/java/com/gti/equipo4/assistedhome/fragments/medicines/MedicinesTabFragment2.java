@@ -13,6 +13,6 @@ public class MedicinesTabFragment2  extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.sensors, container, false);
+        return inflater.inflate(R.layout.medicine_tab_fragment_2, container, false);
     }
 }
