@@ -8,8 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.activities.MainActivity;
 import com.gti.equipo4.assistedhome.activities.Mqtt;
@@ -22,6 +29,10 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import static com.firebase.ui.auth.AuthUI.TAG;
@@ -123,6 +134,73 @@ public class home extends Fragment implements MqttCallback {
             }
         });
         //---------------MQTT---------------------
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Casa_1213") // TODO: Coger id de la casa dinamicamente
+                .document("habitaciones")
+                .collection("Cocina")
+                .document("temperatura")
+                .collection("registros")
+                .orderBy("hora", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        List<Double> measures = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                            if (doc.get("value") != null) {
+                                measures.add(doc.getDouble("value"));
+                                break;
+                            }
+                        }
+                        Log.d(TAG, "Current measures: " + measures.toArray()[0].toString());
+                        TextView lastWeightMeasure =(TextView) view.findViewById(R.id.temperature);
+                        if (measures.isEmpty()){
+                            lastWeightMeasure.setText("-");
+                        }else {
+                            lastWeightMeasure.setText(measures.toArray()[0].toString()+"°C");
+                        }
+                    }
+                });
+
+        db.collection("Casa_1213") // TODO: Coger id de la casa dinamicamente
+                .document("habitaciones")
+                .collection("Cocina")
+                .document("humedad")
+                .collection("registros")
+                .orderBy("hora", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        List<Double> measures = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                            if (doc.get("value") != null) {
+                                measures.add(doc.getDouble("value"));
+                                break;
+                            }
+                        }
+                        Log.d(TAG, "Current measures: " + measures.toArray()[0].toString());
+                        TextView lastWeightMeasure =(TextView) view.findViewById(R.id.humidity);
+                        if (measures.isEmpty()){
+                            lastWeightMeasure.setText("-");
+                        }else {
+                            lastWeightMeasure.setText(measures.toArray()[0].toString()+"%");
+                        }
+                    }
+                });
+
+
 
         // Inflate the layout for this fragment
         return view;
