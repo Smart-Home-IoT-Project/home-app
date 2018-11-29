@@ -47,11 +47,6 @@ import com.gti.equipo4.assistedhome.fragments.menu.sensors;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public boolean isFirstStart;
-    private RecyclerView recyclerView;
-    public Weights adaptador;
-    public static WeigthsFirestoreUI adaptador2;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
