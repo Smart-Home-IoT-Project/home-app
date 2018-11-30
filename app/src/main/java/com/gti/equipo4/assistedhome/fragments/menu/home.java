@@ -41,14 +41,7 @@ import static com.gti.equipo4.assistedhome.activities.Mqtt.qos;
 import static com.gti.equipo4.assistedhome.activities.Mqtt.topicRoot;
 import static com.gti.equipo4.assistedhome.activities.Mqtt.clientId;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CasaFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CasaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class home extends Fragment implements MqttCallback {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -151,10 +144,10 @@ public class home extends Fragment implements MqttCallback {
                             return;
                         }
 
-                        List<Double> measures = new ArrayList<>();
+                        List<String> measures = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
                             if (doc.get("value") != null) {
-                                measures.add(doc.getDouble("value"));
+                                measures.add(doc.getString("value"));
                                 break;
                             }
                         }
@@ -183,10 +176,10 @@ public class home extends Fragment implements MqttCallback {
                             return;
                         }
 
-                        List<Double> measures = new ArrayList<>();
+                        List<String> measures = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
                             if (doc.get("value") != null) {
-                                measures.add(doc.getDouble("value"));
+                                measures.add(doc.getString("value"));
                                 break;
                             }
                         }
