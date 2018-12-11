@@ -63,6 +63,7 @@ public class MedicinesTabFragment1 extends Fragment {
                 Intent i = new Intent(MedicinesTabFragment1.super.getContext(), VistaMedicamentoActivity.class);
                 i.putExtra("id", (long) recyclerView.getChildAdapterPosition(v));
                 startActivity(i);
+
             }
         });
 
