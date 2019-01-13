@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vistaMedicamento"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/container_principal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -77,133 +77,124 @@
             <FrameLayout
                 android:layout_width="4dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary" >
+
+            </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/container_nombre"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/container_nombre"
+                <ImageView
+                    android:id="@+id/imageViewNombre"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_medic" />
+
+                <TextView
+                    android:id="@+id/nombreMedicamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageViewNombre"
-                        android:layout_width="40dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/ic_medic" />
-
-                    <TextView
-                        android:id="@+id/nombreMedicamento"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="nombre medicamento"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary">
-
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/container_cantidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageViewCantidad"
-                        android:layout_width="40dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/ic_quantity" />
-
-                    <TextView
-                        android:id="@+id/cantidad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="5"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textCantidad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="veces al día"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary">
-
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/container_dias"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="bottom"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageViewDias"
-                        android:layout_width="40dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <TextView
-                        android:id="@+id/dias"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="Lunes, Martes...."
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="nombre medicamento"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/container_calendar"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="3dp">
 
-            <CalendarView
-                android:id="@+id/calendarView2"
+            <FrameLayout
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/container_cantidad"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageViewCantidad"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_quantity" />
+
+                <TextView
+                    android:id="@+id/cantidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textAlignment="viewEnd"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textCantidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="veces al día"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="3dp">
+
+            <FrameLayout
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/container_dias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageViewDias"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_calendar" />
+
+                <TextView
+                    android:id="@+id/dias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Lunes, Martes...."
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

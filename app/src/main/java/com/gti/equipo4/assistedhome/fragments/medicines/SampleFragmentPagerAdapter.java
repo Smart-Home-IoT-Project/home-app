@@ -15,8 +15,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
     final int PAGE_COUNT = 2;
     private int[] tabIcons = {
-            R.drawable.ic_scale,
-            R.drawable.ic_ruller
+            R.drawable.ic_medic,
+            R.drawable.ic_calendar
     };
     private String tabTitles[] = new String[] { "Medicamentos", "Calendario" };
     private Context context;

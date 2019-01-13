@@ -1,9 +1,11 @@
 package com.gti.equipo4.assistedhome.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentFilter.MalformedMimeTypeException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,10 +26,16 @@ import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.fragments.medicines.MedicinesTabFragment1;
 import com.gti.equipo4.assistedhome.model.Medicine;
 
+
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity.MIME_TEXT_PLAIN;
+import static com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity.TAG;
+
+
 
 public class EdicionMedicamentoActivity extends AppCompatActivity {
 
@@ -45,44 +54,44 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edicion_medicines);
-        Bundle extras = getIntent().getExtras();/*
-        new AlertDialog.Builder(this)
-                .setTitle("¿Quieres coger los datos por NFC?").setMessage("Esto es una aplicación IoT dedicada a hacerte la vida mas facil")
-                .setPositiveButton( "SI" , null)
-                .setNegativeButton("No", null)
-                .show();*/
-        id = extras.getLong("id", -1);
-        if (id == -1) {
-            medicina = new Medicine();
-            _id = null;
+        Bundle extras = getIntent().getExtras();
+
+        assert extras != null;
+        if(extras == null){
+
         } else {
-            medicina = MedicinesTabFragment1.adaptador.getItem((int) id);
-            _id = MedicinesTabFragment1.adaptador.getKey((int) id);
+            id = extras.getLong( "id", -1 );
+            if (id == -1) {
+                medicina = new Medicine();
+                _id = null;
+            } else {
+                medicina = MedicinesTabFragment1.adaptador.getItem( (int) id );
+                _id = MedicinesTabFragment1.adaptador.getKey( (int) id );
+            }
+            nombre = findViewById( R.id.editNombre );
+            nombre.setText( medicina.getNombre() );
+            cantidad = findViewById( R.id.editCantidad );
+            cantidad.setText( Integer.toString( medicina.getCantidad() ) );
+            dias = findViewById( R.id.editDias );
+            dias.setText( medicina.getDias() );
+
+            mNfcAdapter = NfcAdapter.getDefaultAdapter( this );
+
+
+            if (mNfcAdapter == null) {
+                // Stop here, we definitely need NFC
+                Toast.makeText( this, "This device doesn't support NFC.", Toast.LENGTH_LONG ).show();
+                //finish();
+                return;
+            }
+
+            if (!mNfcAdapter.isEnabled()) {
+                nombre.setText( "NFC is disabled." );
+            } else {
+                nombre.setText( R.string.app_name );
+            }
+            handleIntent( getIntent() );
         }
-        nombre = findViewById(R.id.editNombre);
-        nombre.setText(medicina.getNombre());
-        cantidad = findViewById(R.id.editCantidad);
-        cantidad.setText(Integer.toString(medicina.getCantidad()));
-        dias = findViewById(R.id.editDias);
-        dias.setText(medicina.getDias());
-
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-
-
-        if (mNfcAdapter == null) {
-            // Stop here, we definitely need NFC
-            Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
-
-        if (!mNfcAdapter.isEnabled()) {
-            nombre.setText("NFC is disabled.");
-        } else {
-            nombre.setText(R.string.app_name);
-        }
-        handleIntent(getIntent());
-
 
     }//onCreate
 
@@ -114,14 +123,12 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         setupForegroundDispatch(this, mNfcAdapter);
     }
 
     @Override
     protected void onPause() {
         stopForegroundDispatch(this, mNfcAdapter);
-
         super.onPause();
     }
 
@@ -185,8 +192,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
         adapter.disableForegroundDispatch(activity);
     }
 
-    public class NdefReaderTask extends AsyncTask<Tag, Void, String> {
-
+    private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
         @Override
         protected String doInBackground(Tag... params) {
             Tag tag = params[0];
@@ -224,6 +230,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
             return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
@@ -240,3 +247,6 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     }
 
 }//()
+
+
+

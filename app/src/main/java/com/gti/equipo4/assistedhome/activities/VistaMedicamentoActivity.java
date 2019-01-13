@@ -127,7 +127,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void actualizarVistas() {
         if (medicina.getNombre() == null) {
-            findViewById(R.id.nombreMedicamento).setVisibility(View.GONE);
+            //findViewById(R.id.nombreMedicamento).setVisibility(View.GONE);
         } else {
             findViewById(R.id.nombreMedicamento).setVisibility(View.VISIBLE);
             TextView nombre = findViewById(R.id.nombreMedicamento);
@@ -135,9 +135,7 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
         }
 
         if (medicina.getCantidad() == 0) {
-            findViewById(R.id.cantidad).setVisibility(View.GONE);
-            findViewById(R.id.imageViewCantidad).setVisibility(View.GONE);
-            findViewById(R.id.textCantidad).setVisibility(View.GONE);
+            //findViewById(R.id.cantidad).setVisibility(View.GONE);
 
         } else {
             findViewById(R.id.cantidad).setVisibility(View.VISIBLE);
@@ -147,7 +145,6 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
 
         if (medicina.getDias() == null) {
             findViewById(R.id.dias).setVisibility(View.GONE);
-            findViewById(R.id.imageViewDias).setVisibility(View.GONE);
         } else {
             findViewById(R.id.dias).setVisibility(View.VISIBLE);
             TextView dias = findViewById(R.id.dias);
