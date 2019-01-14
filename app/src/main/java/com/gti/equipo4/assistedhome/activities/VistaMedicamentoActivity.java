@@ -195,7 +195,8 @@ public class VistaMedicamentoActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 24) {
             uriFoto = getUriForFile(this, "fileProvider", file); }
         else {
-            uriFoto = Uri.fromFile(file); }
+            uriFoto = Uri.fromFile(file);
+        }
         Intent intent   = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.putExtra (MediaStore.EXTRA_OUTPUT, uriFoto);

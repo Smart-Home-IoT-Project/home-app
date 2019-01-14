@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentFilter.MalformedMimeTypeException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -16,7 +15,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,10 +29,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import static com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity.MIME_TEXT_PLAIN;
-import static com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity.TAG;
-
 
 
 public class EdicionMedicamentoActivity extends AppCompatActivity {

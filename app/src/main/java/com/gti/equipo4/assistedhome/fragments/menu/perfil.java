@@ -9,19 +9,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -43,29 +48,27 @@ public class perfil extends Fragment {
         view = inflater.inflate(R.layout.perfil, container, false);
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         String uidUsuario = usuario.getUid();
-        final String[] tlfn = new String[1];
-        final String[] genero = new String[1];
-/*
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Usuarios")
                 .document(uidUsuario)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .get()
+                .addOnCompleteListener( new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot value,
-                                        @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w(TAG, "Listen failed.", e);
-                            return;
-                        }
-
-                        for (QueryDocumentSnapshot doc : value) {
-                            tlfn[0] = (String) doc.get("telefono");
-                            genero[0] = (String) doc.get("sexo");
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task){
+                        if (task.isSuccessful()) {
+                            String genero = task.getResult().getString("sexo");
+                            long tlfn = task.getResult().getLong("telefono");
+                            TextView viewGenero = view.findViewById(R.id.textViewGenero);
+                            viewGenero.setText(genero);
+                            TextView telefono = view.findViewById(R.id.textViewTlfn);
+                            telefono.setText(Long.toString( tlfn ));
+                        } else {
+                            Log.e("Firestore", "Error al leer", task.getException());
                         }
                     }
                 });
 
-*/
         TextView nombre = view.findViewById(R.id.userName);
         nombre.setText(usuario.getDisplayName());
         TextView correo = view.findViewById(R.id.userEmail);
@@ -75,6 +78,7 @@ public class perfil extends Fragment {
         Uri urlImagen = usuario.getPhotoUrl();
         if (urlImagen != null) {
             ImageView fotoUsuario = view.findViewById(R.id.imageViewPerfil );
+            Picasso.with(getContext()).load(urlImagen).into(fotoUsuario);
             fotoUsuario.setImageURI(urlImagen);
         }
 
