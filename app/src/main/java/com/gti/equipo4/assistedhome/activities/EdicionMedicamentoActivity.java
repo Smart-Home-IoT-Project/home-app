@@ -42,6 +42,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
     private NfcAdapter mNfcAdapter;
+    boolean haveNFC = false;
 
 
     @Override
@@ -83,6 +84,7 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
                 nombre.setText( "NFC is disabled." );
             } else {
                 nombre.setText( R.string.app_name );
+                haveNFC = true;
             }
             handleIntent( getIntent() );
         }
@@ -117,12 +119,16 @@ public class EdicionMedicamentoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setupForegroundDispatch(this, mNfcAdapter);
+        if (haveNFC){
+            setupForegroundDispatch(this, mNfcAdapter);
+        }
     }
 
     @Override
     protected void onPause() {
-        stopForegroundDispatch(this, mNfcAdapter);
+        if (haveNFC) {
+            stopForegroundDispatch(this, mNfcAdapter);
+        }
         super.onPause();
     }
 
