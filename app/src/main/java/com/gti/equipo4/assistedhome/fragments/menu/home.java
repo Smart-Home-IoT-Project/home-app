@@ -18,6 +18,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
+import com.gti.equipo4.assistedhome.activities.Alerts;
 import com.gti.equipo4.assistedhome.activities.MainActivity;
 import com.gti.equipo4.assistedhome.activities.Mqtt;
 
@@ -43,6 +44,9 @@ import static com.gti.equipo4.assistedhome.activities.Mqtt.clientId;
 
 
 public class home extends Fragment implements MqttCallback {
+    // Alerts
+    Alerts alertManager;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -83,6 +87,8 @@ public class home extends Fragment implements MqttCallback {
             Log.e(Mqtt.TAG, "Error al suscribir.", e);
         }
         //---------------MQTT---------------------
+
+        alertManager = new Alerts(getActivity(),super.getContext());
     }
 
     @Override
@@ -157,6 +163,8 @@ public class home extends Fragment implements MqttCallback {
                             lastWeightMeasure.setText("-");
                         }else {
                             lastWeightMeasure.setText(measures.toArray()[0].toString()+"°C");
+                            double tempMeasureValue = Double.parseDouble(measures.toArray()[0].toString());
+                            alertManager.checkTemp(tempMeasureValue);
                         }
                     }
                 });
@@ -189,6 +197,8 @@ public class home extends Fragment implements MqttCallback {
                             lastWeightMeasure.setText("-");
                         }else {
                             lastWeightMeasure.setText(measures.toArray()[0].toString()+"%");
+                            double humMeasureValue = Double.parseDouble(measures.toArray()[0].toString());
+                            alertManager.checkHum(humMeasureValue);
                         }
                     }
                 });
