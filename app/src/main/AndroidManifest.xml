@@ -35,9 +35,11 @@
         <activity android:name="com.gti.equipo4.assistedhome.activities.PreferenciasActivity" />
 
         <activity android:name="com.gti.equipo4.assistedhome.activities.VistaMedicamentoActivity" />
+        <activity android:name="com.gti.equipo4.assistedhome.activities.EditarPerfilActivity" />
         <activity android:name="com.gti.equipo4.assistedhome.activities.EdicionMedicamentoActivity" >
 
-            <intent-filter>
+
+        <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
             <intent-filter>
