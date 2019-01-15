@@ -3,43 +3,91 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="preferencias_principal" >
     <PreferenceCategory android:title="General">
-    <PreferenceScreen
-        android:icon="@drawable/ic_ruller"
-        android:key="preferencias_unidades"
-        android:title="unidades"
-        android:summary="Establece que tipo de unidad quieres visualizar">
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/preferencias_peso"
-            android:entryValues="@array/preferencias_peso"
-            android:icon="@drawable/ic_scale"
-            android:key="list_preference_1"
-            android:title="Unidades de peso"
-            android:summary="Establece unidades de peso"/>
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/preferencias_altura"
-            android:entryValues="@array/preferencias_altura"
+        <PreferenceScreen
             android:icon="@drawable/ic_ruller"
-            android:key="list_preference_2"
-            android:title="Unidades de altura"
-            android:summary="Establece unidades de medida"/>
-    </PreferenceScreen>
-    <SwitchPreference
-        android:defaultValue="true"
-        android:icon="?android:attr/alertDialogIcon"
-        android:key="mandar_notificaciones"
-        android:title="Notificaciones"
-        android:summary="Activa o desactiva las notificaciones"/>
+            android:key="preferencias_unidades"
+            android:title="Unidades"
+            android:summary="Establece que tipo de unidad quieres visualizar">
+            <ListPreference
+                android:defaultValue="1"
+                android:entries="@array/preferencias_peso"
+                android:entryValues="@array/preferencias_peso"
+                android:icon="@drawable/ic_scale"
+                android:key="list_preference_1"
+                android:title="Unidades de peso"
+                android:summary="Establece unidades de peso"/>
+            <ListPreference
+                android:defaultValue="1"
+                android:entries="@array/preferencias_altura"
+                android:entryValues="@array/preferencias_altura"
+                android:icon="@drawable/ic_ruller"
+                android:key="list_preference_2"
+                android:title="Unidades de altura"
+                android:summary="Establece unidades de medida"/>
+        </PreferenceScreen>
     </PreferenceCategory>
-    <PreferenceCategory android:title="Acerca de">
-
+    <PreferenceCategory android:title="Alertas">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="?android:attr/alertDialogIcon"
+            android:key="alertsEnabled"
+            android:title="Alertas"
+            android:summary="Activa o desactiva las alertas"/>
+        <PreferenceScreen
+            android:icon="@drawable/ic_menu_manage"
+            android:key="preferencias_unidades"
+            android:title="Configurar alertas"
+            android:summary="Establecer los valores de las alertas">
+            <PreferenceCategory android:title="Temperatura">
+                <ListPreference
+                    android:defaultValue="45"
+                    android:entries="@array/alertasMaxTemp"
+                    android:entryValues="@array/alertasMaxTemp"
+                    android:icon="@drawable/ic_temperature"
+                    android:key="maxTempValue"
+                    android:title="Tempertarura máxima"
+                    android:summary="Establece el valor máximo"/>
+                <ListPreference
+                    android:defaultValue="10"
+                    android:entries="@array/alertasMinTemp"
+                    android:entryValues="@array/alertasMinTemp"
+                    android:icon="@drawable/ic_temperature"
+                    android:key="minTempValue"
+                    android:title="Tempertarura mínima"
+                    android:summary="Establece el valor mínimo"/>
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Humedad">
+                <ListPreference
+                    android:defaultValue="80"
+                    android:entries="@array/alertasMaxHume"
+                    android:entryValues="@array/alertasMaxHume"
+                    android:icon="@drawable/ic_humidity"
+                    android:key="maxHumValue"
+                    android:title="Humedad máxima"
+                    android:summary="Establece el valor máximo"/>
+                <ListPreference
+                    android:defaultValue="20"
+                    android:entries="@array/alertasMinHume"
+                    android:entryValues="@array/alertasMinHume"
+                    android:icon="@drawable/ic_humidity"
+                    android:key="minHumValue"
+                    android:title="Humedad mínima"
+                    android:summary="Establece el valor mínimo"/>
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Robo">
+                <SwitchPreference
+                    android:defaultValue="true"
+                    android:icon="?android:attr/alertDialogIcon"
+                    android:key="roboValue"
+                    android:title="Sistema antirrobo"
+                    android:summary="Activa o desactiva las el sistema antirrobo"/>
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Avanzado">
         <Preference
-        android:selectable="false"
-        android:summary="Somos un grupo de alumnos de Jesus Tomas del Grado en Tecnologías Interactivas de la UPV" />
-        <Preference
-        android:summary="0.2.1"
-        android:title="Version" />
+            android:summary="0.2.1"
+            android:title="Version" />
         <Preference android:title="Ver licencia">
             <intent
                 android:action="android.intent.action.VIEW"

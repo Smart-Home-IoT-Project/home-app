@@ -8,4 +8,33 @@
         <item>Métrico (kg)</item>
         <item>Imperial (libras)</item>
     </string-array>
+
+    <string-array name="alertasMinTemp">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+    <string-array name="alertasMaxTemp">
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+    </string-array>
+    <string-array name="alertasMinHume">
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+    <string-array name="alertasMaxHume">
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>80</item>
+    </string-array>
 </resources>
