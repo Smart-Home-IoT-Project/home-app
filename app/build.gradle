@@ -49,5 +49,7 @@ dependencies {
     implementation 'com.alespero:expandable-cardview:0.8'
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

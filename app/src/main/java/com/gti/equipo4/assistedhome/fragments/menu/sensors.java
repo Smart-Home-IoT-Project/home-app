@@ -22,6 +22,6 @@ public class sensors extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /*Intent i = new Intent(sensors.super.getContext() , ReadNFCActivity.class);
         super.startActivity(i);*/
-        return inflater.inflate(R.layout.sensors, container, false);
+        return inflater.inflate(R.layout.edicion_perfil, container, false);
     }
 }
