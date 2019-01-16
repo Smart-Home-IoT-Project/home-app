@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.gti.equipo4.assistedhome.activities.IntroActivity"
+        <activity android:name="com.gti.equipo4.assistedhome.activities.IntroActivity2"
             android:theme="@style/InitialSetupTheme" />
         <activity android:name="com.gti.equipo4.assistedhome.activities.PreferenciasActivity" />
 

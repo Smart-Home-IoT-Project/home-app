@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
                 if (isFirstStart) {
 
                     //  Launch app intro
-                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
+                    final Intent i = new Intent(MainActivity.this, IntroActivity2.class);
 
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
