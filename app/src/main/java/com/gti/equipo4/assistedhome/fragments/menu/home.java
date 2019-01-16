@@ -236,6 +236,38 @@ public class home extends Fragment implements MqttCallback {
                     }
                 });
 
+        db.collection("Casa_1213") // TODO: Coger id de la casa dinamicamente
+                .document("personas")
+                .collection("registros")
+                .orderBy("hora", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        List<Double> measures = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                            if (doc.get("value") != null) {
+                                measures.add(doc.getDouble("value"));
+                                break;
+                            }
+                        }
+                        Log.d(TAG, "Current measures: " + measures.toArray()[0].toString());
+                        TextView amountPeople =(TextView) view.findViewById(R.id.personasText);
+                        if (measures.isEmpty()){
+                            amountPeople.setText("-");
+                        }else {
+                            amountPeople.setText(measures.toArray()[0].toString());
+                        }
+                    }
+                });
+
+
+
 
 
         // Inflate the layout for this fragment
