@@ -1,7 +1,5 @@
 package com.gti.equipo4.assistedhome.fragments.menu;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +17,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.activities.Alerts;
-import com.gti.equipo4.assistedhome.activities.MainActivity;
 import com.gti.equipo4.assistedhome.activities.Mqtt;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -199,6 +196,42 @@ public class home extends Fragment implements MqttCallback {
                             lastWeightMeasure.setText(measures.toArray()[0].toString()+"%");
                             double humMeasureValue = Double.parseDouble(measures.toArray()[0].toString());
                             alertManager.checkHum(humMeasureValue);
+                        }
+                    }
+                });
+
+        db.collection("Casa_1213") // TODO: Coger id de la casa dinamicamente
+                .document("habitaciones")
+                .collection("Cocina")
+                .document("actividad")
+                .collection("registros")
+                .orderBy("hora", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        List<Boolean> measures = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                            if (doc.get("value") != null) {
+                                measures.add(doc.getBoolean("value"));
+                                break;
+                            }
+                        }
+                        Log.d(TAG, "Current measures: " + measures.toArray()[0].toString());
+                        TextView lastActivityMeasure =(TextView) view.findViewById(R.id.activity);
+                        if (measures.isEmpty()){
+                            lastActivityMeasure.setText("-");
+                        }else {
+                            if (measures.toArray()[0].toString().equals("true") ){
+                                lastActivityMeasure.setText("Sí");
+                            }else{
+                                lastActivityMeasure.setText("No");
+                            }
                         }
                     }
                 });
