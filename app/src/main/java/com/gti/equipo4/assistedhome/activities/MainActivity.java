@@ -29,7 +29,6 @@ import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.fragments.menu.home;
 import com.gti.equipo4.assistedhome.fragments.menu.medicines;
 import com.gti.equipo4.assistedhome.fragments.menu.perfil;
-import com.gti.equipo4.assistedhome.fragments.menu.sensors;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -40,7 +39,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import com.gti.equipo4.assistedhome.fragments.menu.perfil;
 
 
 public class MainActivity extends AppCompatActivity
@@ -192,8 +190,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fragment = new home();
-        } else if (id == R.id.nav_sensors) {
-            fragment = new sensors();
         } else if (id == R.id.nav_medicines) {
             fragment = new medicines();
         }
