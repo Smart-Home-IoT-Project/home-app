@@ -38,6 +38,7 @@ public class perfil extends Fragment {
     private FirebaseUser usuario;
     private String genero;
     private long tlfn;
+    private TextView telefono;
     private ImageView fotoUsuario;
 
     @Override
@@ -53,6 +54,7 @@ public class perfil extends Fragment {
         usuario = FirebaseAuth.getInstance().getCurrentUser();
         String uidUsuario = usuario.getUid();
         final Context context = super.getContext();
+        telefono = view.findViewById(R.id.textViewTlfn);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Usuarios")
@@ -66,14 +68,12 @@ public class perfil extends Fragment {
                             tlfn = task.getResult().getLong("telefono");
                             TextView viewGenero = view.findViewById(R.id.textViewGenero);
                             viewGenero.setText(genero);
-                            TextView telefono = view.findViewById(R.id.textViewTlfn);
                             telefono.setText(Long.toString( tlfn ));
                         } else {
                             Log.e("Firestore", "Error al leer", task.getException());
                         }
                     }
                 });
-
         TextView nombre = view.findViewById(R.id.userName);
         nombre.setText(usuario.getDisplayName());
         TextView correo = view.findViewById(R.id.userEmail);
@@ -96,23 +96,12 @@ public class perfil extends Fragment {
                 i.putExtra("nombre", nombre)
                         .putExtra("correo", correo)
                         .putExtra("genero", genero)
-                        .putExtra("tlfn", Long.toString( tlfn ));
+                        .putExtra("telefono", telefono.getText().toString());
                 perfil.super.startActivity(i);
             }
         });
 
-        return view;
-    }
 
-    public void lanzarEditarPerfil (View view){
-        String nombre = usuario.getDisplayName();
-        String correo = usuario.getEmail();
-        Intent i = new Intent(this.getContext(), EditarPerfilActivity.class);
-        i.putExtra("nombre", nombre)
-                .putExtra("correo", correo)
-                .putExtra("genero", genero)
-                .putExtra("tlfn", Long.toString( tlfn ))
-                .putExtra("user", usuario);
-        startActivity(i);
+        return view;
     }
 }

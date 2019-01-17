@@ -14,12 +14,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class InitialSampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
     final int PAGE_COUNT = 3;
-    private int[] tabIcons = {
-            R.drawable.ic_medic,
-            R.drawable.ic_calendar,
-            R.drawable.ic_appintro_arrow_back_white
-    };
-    private String[] tabTitles = new String[] { "1", "2", "3" };
+    private String[] tabTitles = new String[] { "Introdución", "Info", "Datos" };
     private Context context;
 
     public InitialSampleFragmentPagerAdapter(FragmentManager fm, Context context) {
@@ -52,12 +47,6 @@ public class InitialSampleFragmentPagerAdapter extends FragmentStatePagerAdapter
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-        // return tabTitles[position];
-        Drawable image = context.getResources().getDrawable(tabIcons[position]);
-        image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
-        SpannableString sb = new SpannableString(" ");
-        ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
-        sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return sb;
+        return tabTitles[position];
     }
 }
