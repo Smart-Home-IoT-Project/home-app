@@ -20,7 +20,7 @@ public class Alerts {
     double maxHumValue;
     double minHumValue;
 
-    boolean alertsEnabled;
+    Boolean alertsEnabled;
 
     // Notification manager
     Notifications newNot;
@@ -39,7 +39,7 @@ public class Alerts {
 
     public void checkTemp(double value){
 
-        alertsEnabled = Boolean.parseBoolean(sharedPreferences.getString("alertsEnabled", "0"));
+        alertsEnabled = sharedPreferences.getBoolean("alertsEnabled", true);
 
         if (alertsEnabled){
             // Read preferences
@@ -59,7 +59,7 @@ public class Alerts {
     }
 
     public void checkHum(double value){
-        alertsEnabled = Boolean.parseBoolean(sharedPreferences.getString("alertsEnabled", "0"));
+        alertsEnabled = sharedPreferences.getBoolean("alertsEnabled", true);
 
         if (alertsEnabled){
             // Read preferences
@@ -75,6 +75,10 @@ public class Alerts {
                 newNot.createNotification("Alerta humedad", "Humedad anormalmente alta");
             }
         }
+    }
+
+    public void alertRobo(){
+        newNot.createNotification("Alerta robo", "Hay alguien en casa");
     }
 
     private int getPreferences(String key){

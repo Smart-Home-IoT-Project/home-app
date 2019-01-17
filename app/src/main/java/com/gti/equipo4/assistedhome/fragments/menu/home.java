@@ -53,6 +53,7 @@ public class home extends Fragment implements MqttCallback {
     private View view;
 
     public Switch luces;
+    public double people =1;
 
     //----------------MQTT---------------------
     MqttClient client;
@@ -229,6 +230,10 @@ public class home extends Fragment implements MqttCallback {
                         }else {
                             if (measures.toArray()[0].toString().equals("true") ){
                                 lastActivityMeasure.setText("Sí");
+
+                                if (people <= 0){
+                                    alertManager.alertRobo();
+                                }
                             }else{
                                 lastActivityMeasure.setText("No");
                             }
@@ -262,6 +267,7 @@ public class home extends Fragment implements MqttCallback {
                             amountPeople.setText("-");
                         }else {
                             amountPeople.setText(measures.toArray()[0].toString().split("\\.")[0]);
+                            people = Double.parseDouble(measures.toArray()[0].toString());
                         }
                     }
                 });
