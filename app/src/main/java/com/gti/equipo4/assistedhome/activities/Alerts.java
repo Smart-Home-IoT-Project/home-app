@@ -42,11 +42,11 @@ public class Alerts {
 
 
         // Check
-        if (value < minTempValue){
+        if (value <= minTempValue){
             newNot.createNotification("Alerta temperatura", "Temperatura anormalmente baja");
         }
 
-        if(value > maxTempValue){
+        if(value >= maxTempValue){
             newNot.createNotification("Alerta temperatura", "Temperatura anormalmente alta");
         }
     }
@@ -57,11 +57,11 @@ public class Alerts {
         minHumValue = getPreferences("minHumValue");
 
         // Check
-        if (value < minHumValue){
+        if (value <= minHumValue){
             newNot.createNotification("Alerta humedad", "Humedad anormalmente baja");
         }
 
-        if(value > maxHumValue){
+        if(value >= maxHumValue){
             newNot.createNotification("Alerta humedad", "Humedad anormalmente alta");
         }
     }
