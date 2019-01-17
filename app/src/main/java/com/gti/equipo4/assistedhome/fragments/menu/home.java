@@ -1,5 +1,11 @@
 package com.gti.equipo4.assistedhome.fragments.menu;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +23,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gti.equipo4.assistedhome.R;
 import com.gti.equipo4.assistedhome.activities.Alerts;
+import com.gti.equipo4.assistedhome.activities.MainActivity;
 import com.gti.equipo4.assistedhome.activities.Mqtt;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -31,6 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import static com.firebase.ui.auth.AuthUI.TAG;
@@ -43,6 +52,7 @@ import static com.gti.equipo4.assistedhome.activities.Mqtt.clientId;
 public class home extends Fragment implements MqttCallback {
     // Alerts
     Alerts alertManager;
+    private static final int REQUEST_PHONE_CALL = 1;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -233,6 +243,47 @@ public class home extends Fragment implements MqttCallback {
 
                                 if (people <= 0){
                                     alertManager.alertRobo();
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(home.super.getContext());
+
+                                    builder.setTitle("Alerta robo");
+                                    builder.setMessage("Quieres llamar a emergencias?");
+
+                                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // Do nothing but close the dialog
+
+                                            dialog.dismiss();
+                                            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "123456789"));
+
+                                            if (ContextCompat.checkSelfPermission(home.super.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+                                                startActivity(intent);
+                                            }
+                                            else
+                                            {
+                                                startActivity(intent);
+                                            }
+
+
+                                        }
+                                    });
+
+                                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            // Do nothing
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+
+
                                 }
                             }else{
                                 lastActivityMeasure.setText("No");
