@@ -261,7 +261,7 @@ public class home extends Fragment implements MqttCallback {
                         if (measures.isEmpty()){
                             amountPeople.setText("-");
                         }else {
-                            amountPeople.setText(measures.toArray()[0].toString());
+                            amountPeople.setText(measures.toArray()[0].toString().split("\\.")[0]);
                         }
                     }
                 });
